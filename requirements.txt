@@ -2,7 +2,6 @@ altair==4.2.0
 attrs==22.1.0
 blinker==1.5
 cachetools==5.2.0
-certifi @ file:///croot/certifi_1665076670883/work/certifi
 charset-normalizer==2.1.1
 cinemagoer==2022.12.4
 click==8.1.3
