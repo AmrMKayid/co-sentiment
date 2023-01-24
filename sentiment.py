@@ -86,7 +86,7 @@ def setup():
 emotions2image_mapping, chain_model = setup()
 
 feeling_text = st.text_input("How are you feeling?", "")
-top_k = st.slider("Top Emotions", min_value=1, max_value=len(classes_mapping), value=3, step=1)
+top_k = st.slider("Top Emotions", min_value=1, max_value=len(classes_mapping), value=1, step=1)
 
 
 def score_sentence(text: str, top_k: int = 5):
