@@ -20,7 +20,7 @@ st.set_page_config(layout="wide")
 streamlit_header_and_footer_setup()
 st.markdown("## Sentiment Analysis 🥺")
 
-model_name: str = 'multilingual-2210-alpha'
+model_name: str = 'multilingual-22-12'
 COHERE_API_KEY = os.environ.get("COHERE_API_KEY")
 co = cohere.Client(COHERE_API_KEY)
 
