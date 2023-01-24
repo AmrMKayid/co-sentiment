@@ -116,6 +116,8 @@ def score_sentence(text: str, top_k: int = 5):
             cols[i].markdown("---")
         cols[i].markdown(f"**{emotion}**: {p * 100:.2f}%")
 
+        print(f"Predicted emotion: {emotion}, with probability: {p}")
+
 
 if feeling_text:
     score_sentence(feeling_text, top_k=top_k)
