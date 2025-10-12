@@ -50,7 +50,8 @@ def seed_everything(seed: int):
 
 def get_embeddings(co: cohere.Client,
                    texts: List[str],
-                   model_name: str = 'multilingual-labse',
+                   model_name: str = 'embed-multilingual-v3.0',
+                   input_type: str = 'search_document',
                    truncate: str = 'RIGHT',
                    batch_size: int = 2048) -> List[float]:
 
@@ -59,7 +60,7 @@ def get_embeddings(co: cohere.Client,
 
         for i in range(N_MAX_RETRIES):
             try:
-                output = co.embed(model=model_name, texts=texts_batch, truncate=truncate)
+                output = co.embed(model=model_name, input_type=input_type, texts=texts_batch, truncate=truncate)
                 break
             except Exception as e:
                 if i == (N_MAX_RETRIES - 1):
