@@ -1,6 +1,7 @@
 import base64
 import os
 import pickle
+import warnings
 
 import cohere
 import numpy as np
@@ -61,9 +62,11 @@ classes_mapping = {
     6: 'Surprise',
     7: 'Trust'
 }
+
+# Use relative paths as in the docs
 model_path = "./data/models/emotion_chain.pkl"
 
-@st.cache
+@st.cache_resource
 def setup():
     emotions2image_mapping = {
         'Anger': './data/emotions/anger.gif',
@@ -78,8 +81,14 @@ def setup():
     for key, value in emotions2image_mapping.items():
         with open(value, "rb") as f:
             emotions2image_mapping[key] = f.read()
-
-    chain_model = pickle.load(open(model_path, 'rb'))
+    
+    try:
+        chain_model = pickle.load(open(model_path, 'rb'))
+    except FileNotFoundError:
+        with st.spinner("Training model... Please wait."):
+            train_and_save()
+        chain_model = pickle.load(open(model_path, 'rb'))
+    
     return emotions2image_mapping, chain_model
 
 
